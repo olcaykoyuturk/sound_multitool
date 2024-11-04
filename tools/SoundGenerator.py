@@ -68,31 +68,26 @@ def save_wave_file(filename, data, sample_rate):
         filename += '.wav'
 
     if data.ndim == 1:
-        num_channels = 1  # Mono
+        num_channels = 1
     elif data.ndim == 2:
-        num_channels = data.shape[1]  # Stereo (veya diğer çoklu kanallar)
+        num_channels = data.shape[1]
     else:
         raise ValueError("Data'nın boyutu 1D veya 2D olmalıdır.")
 
     sampwidth = 2
 
-    # Sıkıştırma türü ve adı
     comptype = "NONE"
     compname = "not compressed"
 
-    # Verileri 16-bit PCM formatına dönüştürün
     data = (data * 32767).astype(np.int16)
 
-    # Kanalları interleave etme
-    if num_channels == 1:  # Mono
+    if num_channels == 1:
         interleaved = data.flatten()
-    else:  # Stereo
+    else:
         interleaved = data.flatten()
 
-    # Çerçeve sayısını hesaplayın
     n_frames = len(interleaved) // num_channels
 
-    # Dosyayı yazma işlemi
     try:
         with wave.open(filename, 'wb') as wf:
             wf.setnchannels(num_channels)

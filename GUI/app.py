@@ -47,7 +47,7 @@ def app_oscilloscope():
         try:
             display_seconds = float(RT_display_seconds.get())
         except ValueError:
-            display_seconds = 5  # Varsayılan bir değer
+            display_seconds = 5
             RT_display_seconds.delete(0, tk.END)
             RT_display_seconds.insert(0, str(display_seconds))
 
@@ -115,7 +115,6 @@ def app_fft():
     canvas = FigureCanvasTkAgg(fig, master=app)
     canvas.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-    # Values
     label = tk.Label(left_panel, text="X Min:")
     label.place(x=10, y=130)
     x_min = tk.Entry(left_panel, width=20)
@@ -192,7 +191,6 @@ def app_fft():
         ax.set_xlabel("Frequency (Hz)")
         ax.set_ylabel("Amplitude")
 
-        #Vertical Axis
         if vertical_var.get() is not None:
             if vertical_var.get() == "Lin":
                 ax.set_ylabel("Amplitude [Lin] " + level_var.get())
@@ -322,7 +320,6 @@ def app_spectrogram():
     canvas = FigureCanvasTkAgg(fig, master=app)
     canvas.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-    # Values
     label = tk.Label(left_panel, text="Window_size:")
     label.place(x=10, y=130)
     window_size_gen = tk.Entry(left_panel, width=20)
@@ -479,11 +476,9 @@ def app_sound_record():
     stop_button = tk.Button(left_panel, text="Kaydet", command=stop_recording)
     stop_button.place(x=10, y=170)
 
-    # Kayıt durumu etiketi
     recording_label = tk.Label(left_panel, text="Kayıt durumu: Durdu")
     recording_label.place(x=10, y=210)
 
-    # Saniye sayacı etiketi
     time_label = tk.Label(left_panel, text="Zaman: 0 saniye")
     time_label.place(x=10, y=250)
 
@@ -515,7 +510,6 @@ def app_sound_generator():
         label = tk.Label(left_panel, text="White Generator", font=("Arial", 10, "bold"))
         label.place(x=125, y=90)
 
-        # Values
         label = tk.Label(left_panel, text="Süre:")
         label.place(x=10, y=130)
         time_gen = tk.Entry(left_panel, width=20)
@@ -711,7 +705,6 @@ def app_sound_generator():
         label = tk.Label(left_panel, text="Wave Generator", font=("Arial", 10, "bold"))
         label.place(x=125, y=90)
 
-        # Values
         label = tk.Label(left_panel, text="Süre:")
         label.place(x=10, y=130)
         time_gen = tk.Entry(left_panel, width=20)
@@ -798,10 +791,8 @@ def load_file():
     file_path = filedialog.askopenfilename(filetypes=[("WAV files", "*.wav")])
     if file_path:
         try:
-            # Dosya verilerini oku
             data, time, channels, sample_width, sample_rate, n_frames = readfile.read_data(file_path)
 
-            # DataContainer sınıfını kullanarak verileri ayarla
             data_container.set_data(data)
             data_container.set_time(time)
             data_container.set_channels(channels)
@@ -813,12 +804,10 @@ def load_file():
             print(data_container.get_data(), data_container.get_time(), data_container.get_channels(),
                   data_container.get_file_path())
 
-            # Başarı mesajını göster
             messagebox.showinfo("Başarılı", "Dosya başarıyla yüklendi!")
             file_label.config(text=data_container.get_file_path())
 
         except Exception as e:
-            # Hata mesajını göster
             messagebox.showerror("Hata", f"Dosya yüklenirken bir hata oluştu!: {e}")
 
 
@@ -842,15 +831,15 @@ def panel():
 
 
 def set_background():
-    global bg_image_label  # Bu değişkeni global yaparak GC tarafından yok edilmesini önlüyoruz.
+    global bg_image_label
 
     bg_image = Image.open("../image/background.jpg")
-    bg_image = bg_image.resize((1280, 720), Image.LANCZOS)  # Resmi pencere boyutuna göre yeniden boyutlandırın
+    bg_image = bg_image.resize((1280, 720), Image.LANCZOS)
     bg_image_tk = ImageTk.PhotoImage(bg_image)
 
     bg_image_label = tk.Label(app, image=bg_image_tk)
-    bg_image_label.image = bg_image_tk  # Referansı saklayın
-    bg_image_label.place(relwidth=1, relheight=1)  # Resmi tüm pencereyi kaplayacak şekilde yerleştirin
+    bg_image_label.image = bg_image_tk
+    bg_image_label.place(relwidth=1, relheight=1)
 
 
 def create_button():

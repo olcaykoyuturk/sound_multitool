@@ -1,12 +1,10 @@
 import numpy as np
 
 
-# amplitude - time graph
 def oscilloscope(time, data):
     return time, data
 
 
-# fft calculator
 def fft_calculator(data, sample_rate):
     fft_result = np.fft.fft(data)
     fft_freq = np.fft.fftfreq(len(data), d=1 / sample_rate)
@@ -20,7 +18,6 @@ def fft_calculator(data, sample_rate):
     return fft_freq, fft_result
 
 
-# amplitude - frequency
 def fft_graph(data, sample_rate, level_type):
     fft_freq, fft_result = fft_calculator(data, sample_rate)
 
@@ -37,7 +34,6 @@ def fft_graph(data, sample_rate, level_type):
     return fft_freq, fft_result, scaled_amplitudes
 
 
-# octave calculator
 def octave_calculator(data, sample_rate):
     octave_band_limits = [
         (31.5, 22.4, 44.8),
@@ -66,9 +62,8 @@ def octave_calculator(data, sample_rate):
         if band_power > 0:
             band_level = 10 * np.log10(band_power)
         else:
-            band_level = 0  # Use 0 dB for bands with no power
+            band_level = 0
 
-        # Convert negative levels to 0 dB
         band_level = max(band_level, 0)
 
         octave_levels.append(band_level)
@@ -78,7 +73,6 @@ def octave_calculator(data, sample_rate):
     return octave_centers, octave_levels, center_freqs
 
 
-# spectrogram calculator
 def spectrogram_calculator(data, window_size, overlap, sample_rate):
     step_size = window_size - overlap
     shape = (data.size - window_size + 1, window_size)

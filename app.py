@@ -566,7 +566,6 @@ def app_sound_generator():
         label = tk.Label(left_panel, text="Pink Generator", font=("Arial", 10, "bold"))
         label.place(x=125, y=90)
 
-        # Values
         label = tk.Label(left_panel, text="Süre:")
         label.place(x=10, y=130)
         time_gen = tk.Entry(left_panel, width=20)
@@ -623,7 +622,6 @@ def app_sound_generator():
         label = tk.Label(left_panel, text="Sweep Generator", font=("Arial", 10, "bold"))
         label.place(x=125, y=90)
 
-        # Values
         label = tk.Label(left_panel, text="Süre:")
         label.place(x=10, y=130)
         time_gen = tk.Entry(left_panel, width=20)
@@ -654,7 +652,6 @@ def app_sound_generator():
         upper_freq = tk.Entry(left_panel, width=20)
         upper_freq.place(x=120, y=330)
 
-        # New checkbuttons for repeat and swept_sine
         repeat_var = tk.BooleanVar()
         repeat_chk = tk.Checkbutton(left_panel, text="Tekrarla", variable=repeat_var, onvalue=True, offvalue=False,
                                     bg="lightgrey")

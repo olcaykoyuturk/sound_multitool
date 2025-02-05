@@ -39,7 +39,7 @@ Bu proje, ses analizi ve oluşturma özelliklerini birleştiren bir uygulamadır
 ![Octave Analyzer](https://github.com/olcaykoyuturk/sound_multitool/blob/main/image/5.png?raw=true)
 
 ### Spectrogram
-# Real-Time olarak 20hz to 20.000hz dinlettiğimizde.
+Real-Time olarak 20hz to 20.000hz dinlettiğimizde.
 ![Spectrogram](https://github.com/olcaykoyuturk/sound_multitool/blob/main/image/13.png?raw=true)
 ### Sound Player
 ![Sound Player](https://github.com/olcaykoyuturk/sound_multitool/blob/main/image/6.png?raw=true)
